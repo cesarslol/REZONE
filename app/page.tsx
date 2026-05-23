@@ -280,6 +280,7 @@ export default function RezoneWebsite() {
           </form>
         </div>
       </section>
+      <Achievements />
     </main>
   );
 }
@@ -440,6 +441,67 @@ function Package({
     </div>
   </div>
 </section>
+function Achievements() {
+  return (
+    <section className="px-6 py-24 border-t border-white/10">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
+          Competitive Achievements
+        </p>
+
+        <h2 className="mt-4 text-center text-5xl font-black">
+          Proven Tournament Results
+        </h2>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-2">
+          <AchievementCard
+            image="/6th Place FNCS Grand Finals ($14,000).png"
+            title="FNCS Grand Finals"
+            text="Qualified for NA-West FNCS Grand Finals and earned over $14,000 during the event."
+          />
+
+          <AchievementCard
+            image="/2 Wins Duo Victory Cash Cup ($400).png"
+            title="Duo Victory Cash Cup Winner"
+            text="2/2 wins in the Duo Victory Cash Cup, earning $400."
+          />
+
+          <AchievementCard
+            image="/1st Place Na-Central Heats.png"
+            title="FNCS Major Qualification"
+            text="Qualified through FNCS Major competition on NA-Central."
+          />
+
+          <AchievementCard
+            image="/Trio Cash Cup Win ($600).png"
+            title="Trio Cash Cup Champion"
+            text="1st place Trio Cup finish, earning $600."
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AchievementCard({
+  image,
+  title,
+  text,
+}: {
+  image: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+      <img src={image} className="w-full" />
+      <div className="p-6">
+        <h3 className="text-2xl font-bold">{title}</h3>
+        <p className="mt-3 text-gray-400">{text}</p>
+      </div>
+    </div>
+  );
+}
 function Review({
   name,
   rank,
