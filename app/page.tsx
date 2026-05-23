@@ -243,7 +243,7 @@ export default function RezoneWebsite() {
 
     <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
       Fortnite highlights, tournament clips, and competitive gameplay uploaded
-      regularly on my YouTube channel.
+       on my YouTube channel.
     </p>
 
     <a
