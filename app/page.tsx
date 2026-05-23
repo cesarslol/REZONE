@@ -231,27 +231,37 @@ export default function RezoneWebsite() {
         </div>
       </section>
       {/* HIGHLIGHTS */}
-      <section className="border-t border-white/10 px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-            Highlights
-          </p>
+<section className="border-t border-white/10 px-6 py-24">
+  <div className="mx-auto max-w-7xl">
+    <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
+      Highlights
+    </p>
 
-          <h2 className="mt-4 text-center text-5xl font-black">
-            Fortnite Highlights
-          </h2>
+    <h2 className="mt-4 text-center text-5xl font-black">
+      Fortnite Highlights
+    </h2>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2">
-            <video controls className="w-full rounded-3xl">
-              <source src="/clip1.mp4" type="video/mp4" />
-            </video>
+    <div className="mt-16 grid gap-8 md:grid-cols-2">
+      <video controls preload="metadata" className="w-full rounded-3xl border border-white/10">
+        <source src="/clip1.mp4" type="video/mp4" />
+      </video>
 
-            <video controls className="w-full rounded-3xl">
-              <source src="/clip2.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </section>
+      <video controls preload="metadata" className="w-full rounded-3xl border border-white/10">
+        <source src="/clip2.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div className="mt-10 text-center">
+      <a
+        href="https://www.youtube.com/@Cesarslol"
+        target="_blank"
+        className="inline-block rounded-2xl bg-white px-8 py-4 font-black text-black transition hover:bg-gray-200"
+      >
+        Watch More on YouTube
+      </a>
+    </div>
+  </div>
+</section>
       {/* BOOK */}
       <section id="book" className="px-6 py-24">
         <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-zinc-950 p-8">
