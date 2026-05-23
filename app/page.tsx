@@ -299,12 +299,31 @@ export default function RezoneWebsite() {
       
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
         <div className="aspect-video">
-          <iframe
-            className="h-full w-full"
-            src="https://www.youtube.com/embed/zgQ7o219qDM"
-            title="Fortnite Highlights"
-            allowFullScreen
-          />
+          <<video
+  controls
+  className="h-full w-full"
+>
+  <source src="/clip1.mp4" type="video/mp4" />
+</video>
+<video
+  controls
+  className="h-full w-full"
+>
+  <source src="/clip2.mp4" type="video/mp4" />
+</video>
+            <video
+  controls
+  className="h-full w-full rounded-3xl"
+>
+  <source src="/clip1.mp4" type="video/mp4" />
+</video>
+
+<video
+  controls
+  className="h-full w-full rounded-3xl"
+>
+  <source src="/clip2.mp4" type="video/mp4" />
+</video>
         </div>
 
         <div className="p-6">
