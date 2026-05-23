@@ -230,7 +230,28 @@ export default function RezoneWebsite() {
           </div>
         </div>
       </section>
+      {/* HIGHLIGHTS */}
+      <section className="border-t border-white/10 px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
+            Highlights
+          </p>
 
+          <h2 className="mt-4 text-center text-5xl font-black">
+            Fortnite Highlights
+          </h2>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-2">
+            <video controls className="w-full rounded-3xl">
+              <source src="/clip1.mp4" type="video/mp4" />
+            </video>
+
+            <video controls className="w-full rounded-3xl">
+              <source src="/clip2.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
       {/* BOOK */}
       <section id="book" className="px-6 py-24">
         <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-zinc-950 p-8">
@@ -280,86 +301,6 @@ export default function RezoneWebsite() {
           </form>
         </div>
       </section>
-      <section className="px-6 py-24 border-t border-white/10">
-  <div className="mx-auto max-w-7xl">
-    <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-      Highlights
-    </p>
-
-    <h2 className="mt-4 text-center text-5xl font-black">
-      Fortnite Highlights
-    </h2>
-
-    <p className="mx-auto mt-6 max-w-3xl text-center text-lg text-gray-400">
-      Competitive clips, tournament highlights, and gameplay from years of
-      high-level Fortnite competition.
-    </p>
-
-    <div className="mt-16 grid gap-8 md:grid-cols-2">
-      
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        <div className="aspect-video">
-          <<video
-  controls
-  className="h-full w-full"
->
-  <source src="/clip1.mp4" type="video/mp4" />
-</video>
-<video
-  controls
-  className="h-full w-full"
->
-  <source src="/clip2.mp4" type="video/mp4" />
-</video>
-            <video
-  controls
-  className="h-full w-full rounded-3xl"
->
-  <source src="/clip1.mp4" type="video/mp4" />
-</video>
-
-<video
-  controls
-  className="h-full w-full rounded-3xl"
->
-  <source src="/clip2.mp4" type="video/mp4" />
-</video>
-        </div>
-
-        <div className="p-6">
-          <h3 className="text-2xl font-bold">
-            Competitive Highlights
-          </h3>
-
-          <p className="mt-3 text-gray-400">
-            High-level mechanics, tournament clips, and competitive gameplay.
-          </p>
-        </div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-10 text-center">
-        <h3 className="text-3xl font-black">
-          YouTube Channel
-        </h3>
-
-        <p className="mt-4 max-w-md text-gray-400">
-          Watch more Fortnite highlights, clips, and competitive gameplay on my
-          YouTube channel.
-        </p>
-
-        <a
-          href="https://www.youtube.com/@Cesarslol"
-          target="_blank"
-          className="mt-8 rounded-2xl bg-white px-8 py-4 font-black text-black transition hover:bg-gray-200"
-        >
-          Visit YouTube
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-      <Achievements />
     </main>
   );
 }
@@ -427,160 +368,7 @@ function Package({
     </div>
   );
 }
-<section className="px-6 py-24 border-t border-white/10">
-  <div className="mx-auto max-w-7xl">
-    <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-      Competitive Achievements
-    </p>
 
-    <h2 className="mt-4 text-center text-5xl font-black">
-      Proven Tournament Results
-    </h2>
-
-    <p className="mx-auto mt-6 max-w-3xl text-center text-lg text-gray-400">
-      Years of top-level competitive experience across NA-West and NA-Central,
-      including FNCS Finals appearances, cash cup victories, and high-level
-      tournament placements.
-    </p>
-
-    <div className="mt-16 grid gap-8 md:grid-cols-2">
-      
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        <img
-          src="/6th Place FNCS Grand Finals ($14,000).png"
-          className="w-full"
-        />
-
-        <div className="p-6">
-          <h3 className="text-2xl font-bold">
-            FNCS Grand Finals
-          </h3>
-
-          <p className="mt-3 text-gray-400">
-            Qualified for NA-West FNCS Grand Finals and earned over $14,000
-            during the event against some of the best players in the region.
-          </p>
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        <img
-          src="/2 Wins Duo Victory Cash Cup ($400).png"
-          className="w-full"
-        />
-
-        <div className="p-6">
-          <h3 className="text-2xl font-bold">
-            Duo Victory Cash Cup Winner
-          </h3>
-
-          <p className="mt-3 text-gray-400">
-            Dominated the competition with back-to-back wins in the Duo Victory
-            Cash Cup format.
-          </p>
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        <img
-          src="/1st Place Na-Central Heats.png"
-          className="w-full"
-        />
-
-        <div className="p-6">
-          <h3 className="text-2xl font-bold">
-            FNCS Major Qualification
-          </h3>
-
-          <p className="mt-3 text-gray-400">
-            Qualified through FNCS Major competition on NA-Central against elite
-            tournament-level players.
-          </p>
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        <img
-          src="/Trio Cash Cup Win ($600).png"
-          className="w-full"
-        />
-
-        <div className="p-6">
-          <h3 className="text-2xl font-bold">
-            Trio Cash Cup Champion
-          </h3>
-
-          <p className="mt-3 text-gray-400">
-            Multiple first-place tournament finishes across cash cups and
-            competitive events.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-function Achievements() {
-  return (
-    <section className="px-6 py-24 border-t border-white/10">
-      <div className="mx-auto max-w-7xl">
-        <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-          Competitive Achievements
-        </p>
-
-        <h2 className="mt-4 text-center text-5xl font-black">
-          Proven Tournament Results
-        </h2>
-
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
-          <AchievementCard
-            image="/6th Place FNCS Grand Finals ($14,000).png"
-            title="FNCS Grand Finals"
-            text="Qualified for NA-West FNCS Grand Finals and earned over $14,000 during the event."
-          />
-
-          <AchievementCard
-            image="/2 Wins Duo Victory Cash Cup ($400).png"
-            title="Duo Victory Cash Cup Winner"
-            text="2/2 wins in the Duo Victory Cash Cup, earning $400."
-          />
-
-          <AchievementCard
-            image="/1st Place Na-Central Heats.png"
-            title="FNCS Major Qualification"
-            text="Qualified through FNCS Major competition on NA-Central."
-          />
-
-          <AchievementCard
-            image="/Trio Cash Cup Win ($600).png"
-            title="Trio Cash Cup Champion"
-            text="1st place Trio Cup finish, earning $600."
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AchievementCard({
-  image,
-  title,
-  text,
-}: {
-  image: string;
-  title: string;
-  text: string;
-}) {
-  return (
-    <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-      <img src={image} className="w-full" />
-      <div className="p-6">
-        <h3 className="text-2xl font-bold">{title}</h3>
-        <p className="mt-3 text-gray-400">{text}</p>
-      </div>
-    </div>
-  );
-}
 function Review({
   name,
   rank,
