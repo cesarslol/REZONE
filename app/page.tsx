@@ -280,6 +280,66 @@ export default function RezoneWebsite() {
           </form>
         </div>
       </section>
+      <section className="px-6 py-24 border-t border-white/10">
+  <div className="mx-auto max-w-7xl">
+    <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
+      Highlights
+    </p>
+
+    <h2 className="mt-4 text-center text-5xl font-black">
+      Fortnite Highlights
+    </h2>
+
+    <p className="mx-auto mt-6 max-w-3xl text-center text-lg text-gray-400">
+      Competitive clips, tournament highlights, and gameplay from years of
+      high-level Fortnite competition.
+    </p>
+
+    <div className="mt-16 grid gap-8 md:grid-cols-2">
+      
+      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+        <div className="aspect-video">
+          <iframe
+            className="h-full w-full"
+            src="https://www.youtube.com/embed/zgQ7o219qDM"
+            title="Fortnite Highlights"
+            allowFullScreen
+          />
+        </div>
+
+        <div className="p-6">
+          <h3 className="text-2xl font-bold">
+            Competitive Highlights
+          </h3>
+
+          <p className="mt-3 text-gray-400">
+            High-level mechanics, tournament clips, and competitive gameplay.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-10 text-center">
+        <h3 className="text-3xl font-black">
+          YouTube Channel
+        </h3>
+
+        <p className="mt-4 max-w-md text-gray-400">
+          Watch more Fortnite highlights, clips, and competitive gameplay on my
+          YouTube channel.
+        </p>
+
+        <a
+          href="https://www.youtube.com/@Cesarslol"
+          target="_blank"
+          className="mt-8 rounded-2xl bg-white px-8 py-4 font-black text-black transition hover:bg-gray-200"
+        >
+          Visit YouTube
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
       <Achievements />
     </main>
   );
