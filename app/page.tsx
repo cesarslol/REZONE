@@ -164,7 +164,7 @@ export default function RezoneWebsite() {
           "Former Professional Fortnite Player",
           "10x FNCS Grand Finalist",
           "3x Cash Cup Winner",
-          "$17K+ Earnings",
+          "$17K+ Career Earnings",
           "339K+ PR",
         ]}
         liquipedia="https://liquipedia.net/fortnite/Cesar"
