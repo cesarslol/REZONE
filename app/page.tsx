@@ -78,7 +78,7 @@ export default function RezoneWebsite() {
       <section className="border-y border-white/10 bg-zinc-950 px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-4">
           <Stat number="339K+" label="Fortnite PR" />
-          <Stat number="$16.5K" label="Event Earnings" />
+          <Stat number="$17K+" label="Event Earnings" />
           <Stat number="41K+" label="Tracker Views" />
           <Stat number="Pollo" label="Former Duo History" />
         </div>
