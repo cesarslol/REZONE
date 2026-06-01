@@ -162,8 +162,8 @@ export default function RezoneWebsite() {
         name="Cesar"
         items={[
           "Former Professional Fortnite Player",
-          "FNCS Grand Finals Competitor",
-          "Cash Cup Winner",
+          "10x FNCS Grand Finalist",
+          "3x Cash Cup Winner",
           "$17K+ Earnings",
           "339K+ PR",
         ]}
