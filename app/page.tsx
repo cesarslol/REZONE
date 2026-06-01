@@ -14,6 +14,7 @@ export default function RezoneWebsite() {
 
           <div className="hidden gap-8 text-sm text-gray-300 md:flex">
             <a href="#about" className="hover:text-white">About</a>
+            <a href="#team" className="hover:text-white">Team</a>
             <a href="#packages" className="hover:text-white">Packages</a>
             <a href="#reviews" className="hover:text-white">Reviews</a>
             <a href="#book" className="hover:text-white">Book</a>
@@ -140,7 +141,65 @@ export default function RezoneWebsite() {
           </div>
         </div>
       </section>
+{/* TEAM */}
+<section id="team" className="border-t border-white/10 bg-zinc-950 px-6 py-24">
+  <div className="mx-auto max-w-7xl">
+    <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
+      Our Coaches
+    </p>
 
+    <h2 className="mt-4 text-center text-5xl font-black">
+      Learn from proven competitors.
+    </h2>
+
+    <p className="mx-auto mt-6 max-w-3xl text-center text-lg text-gray-400">
+      Our coaching team includes former professional Fortnite players, FNCS Grand
+      Finalists, LAN qualifiers, cash cup winners, and a World Cup qualifier.
+    </p>
+
+    <div className="mt-16 grid gap-6 md:grid-cols-3">
+      <CoachCard
+        name="Cesar"
+        items={[
+          "Former Professional Fortnite Player",
+          "FNCS Grand Finals Competitor",
+          "Cash Cup Winner",
+          "$17K+ Earnings",
+          "339K+ PR",
+        ]}
+        liquipedia="https://liquipedia.net/fortnite/Cesar"
+        tracker="https://fortnitetracker.com/profile/kbm/Cesars%2010/events?region=GLOBAL"
+        twitter="https://x.com/Cesarslol"
+      />
+
+      <CoachCard
+        name="Jay"
+        items={[
+          "Former Professional Fortnite Player",
+          "2019 World Cup Duos Qualifier",
+          "$150K+ Career Earnings",
+          "12x FNCS Grand Finalist",
+        ]}
+        liquipedia="https://liquipedia.net/fortnite/Jay"
+        tracker="https://fortnitetracker.com/profile/all/JAYLIVEFAST/events"
+        twitter="https://x.com/JayFNBR"
+      />
+
+      <CoachCard
+        name="Bdawg"
+        items={[
+          "Former Professional Fortnite Player",
+          "Qualified for 2026 FNCS Summit LAN",
+          "$30K+ Career Earnings",
+          "9x FNCS Grand Finalist",
+        ]}
+        liquipedia="https://liquipedia.net/fortnite/Bdawg"
+        tracker="https://fortnitetracker.com/profile/all/cvx%20bdawg/events"
+        twitter="https://x.com/bdawg1_"
+      />
+    </div>
+  </div>
+</section>
       {/* PACKAGES */}
       <section id="packages" className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
@@ -383,6 +442,46 @@ function Package({
     </div>
   );
 }
+function CoachCard({
+  name,
+  items,
+  liquipedia,
+  tracker,
+  twitter,
+}: {
+  name: string;
+  items: string[];
+  liquipedia: string;
+  tracker: string;
+  twitter: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-black p-8">
+      <h3 className="text-3xl font-black">{name}</h3>
+
+      <ul className="mt-6 space-y-3 text-gray-300">
+        {items.map((item) => (
+          <li key={item}>• {item}</li>
+        ))}
+      </ul>
+
+      <div className="mt-8 flex flex-wrap gap-3">
+        <a href={liquipedia} target="_blank">
+          Liquipedia
+        </a>
+
+        <a href={tracker} target="_blank">
+          Tracker
+        </a>
+
+        <a href={twitter} target="_blank">
+          X
+        </a>
+      </div>
+    </div>
+  );
+}
+
 
 function Review({
   name,
