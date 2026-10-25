@@ -1,505 +1,75 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+
+const packages = [
+  { title: "VOD Review", tag: "START HERE", price: "$25", description: "Understand what's holding you back with a focused review of your gameplay.", features: ["Fight analysis", "Rotation mistakes", "Endgame review", "Practice recommendations"] },
+  { title: "1-on-1 Coaching", tag: "POPULAR", price: "$50", description: "Work directly with a coach on the decisions and mechanics that matter most.", features: ["60-minute private session", "Mechanics coaching", "Ranked strategy", "Custom improvement plan"] },
+  { title: "30-Day Program", tag: "COMPETITIVE", price: "$200", description: "A structured month of coaching for players serious about improving.", features: ["Weekly coaching", "Daily routines", "VOD reviews", "Tournament preparation"] },
+];
+const coaches = [
+  { name: "Cesar", label: "FOUNDER & COACH", achievements: ["10× FNCS Grand Finalist", "3× Cash Cup Winner", "$17K+ career earnings", "339K+ PR"], links: { Liquipedia: "https://liquipedia.net/fortnite/Cesar", Tracker: "https://fortnitetracker.com/profile/kbm/Cesars%2010/events?region=GLOBAL", X: "https://x.com/Cesarslol" } },
+  { name: "Jay", label: "COMPETITIVE COACH", achievements: ["2019 World Cup Duos Qualifier", "12× FNCS Grand Finalist", "$150K+ career earnings"], links: { Liquipedia: "https://liquipedia.net/fortnite/Jay", Tracker: "https://fortnitetracker.com/profile/all/JAYLIVEFAST/events", X: "https://x.com/JayFNBR" } },
+  { name: "Bdawg", label: "COMPETITIVE COACH", achievements: ["2026 FNCS Summit LAN Qualifier", "9× FNCS Grand Finalist", "$30K+ career earnings"], links: { Liquipedia: "https://liquipedia.net/fortnite/Bdawg", Tracker: "https://fortnitetracker.com/profile/all/cvx%20bdawg/events", X: "https://x.com/bdawg1_" } },
+];
+const reviews = [
+  { name: "Evan M.", rank: "Elite → Unreal", quote: "I was hardstuck Elite for months. After two sessions my fights felt way cleaner and I finally hit Unreal." },
+  { name: "Jayden R.", rank: "Competitive Player", quote: "Most coaches just tell you obvious stuff. Cristian actually broke down why I kept dying midgame and fixed it fast." },
+  { name: "Marcus T.", rank: "Champion Player", quote: "The routines helped way more than I expected. My mechanics got way more consistent after like a week." },
+];
+const field = "w-full rounded-xl border border-white/15 bg-[#101318] px-4 py-3.5 text-sm text-white placeholder:text-zinc-500 outline-none transition focus:border-[#7296ff] focus:ring-1 focus:ring-[#7296ff]/40";
 
 export default function RezoneWebsite() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState("");
+  const [selectedCoach, setSelectedCoach] = useState("No preference");
+  const choosePackage = (name: string) => {
+    setSelectedPackage(name);
+    document.getElementById("book")?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
-    <main className="min-h-screen bg-black text-white">
-      {/* NAV */}
-      <nav className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <a href="#home" className="text-2xl font-black tracking-tight">
-            REZONE
-          </a>
-
-          <div className="hidden gap-8 text-sm text-gray-300 md:flex">
-            <a href="#about" className="hover:text-white">About</a>
-            <a href="#team" className="hover:text-white">Team</a>
-            <a href="#packages" className="hover:text-white">Packages</a>
-            <a href="#reviews" className="hover:text-white">Reviews</a>
-            <a href="#book" className="hover:text-white">Book</a>
+    <main className="min-h-screen bg-[#080a0d] text-white selection:bg-[#7296ff]/40">
+      <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#080a0d]/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+          <a href="#home" className="text-2xl font-black tracking-[-.06em]">REZONE<span className="text-[#7296ff]">.</span></a>
+          <div className="hidden items-center gap-8 text-sm font-medium text-zinc-400 md:flex">
+            {["About", "Coaches", "Pricing", "Reviews"].map((item) => <a key={item} href={`#${item === "Coaches" ? "team" : item === "Pricing" ? "packages" : item.toLowerCase()}`} className="transition hover:text-white">{item}</a>)}
           </div>
-
-          <a
-            href="#book"
-            className="rounded-xl bg-white px-5 py-2 text-sm font-bold text-black transition hover:bg-gray-200"
-          >
-            Book Now
-          </a>
+          <a href="#book" className="hidden rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-black transition hover:bg-[#dce5ff] sm:inline-flex">Book coaching <span className="ml-2">↗</span></a>
+          <button type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)} className="rounded-lg border border-white/20 px-3 py-2 text-xl md:hidden">☰</button>
         </div>
+        {menuOpen && <div className="flex flex-col gap-1 border-t border-white/10 bg-[#101318] p-5 md:hidden">{[["About", "about"], ["Coaches", "team"], ["Pricing", "packages"], ["Reviews", "reviews"], ["Book coaching", "book"]].map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-3 text-zinc-200 hover:bg-white/10">{label}</a>)}</div>}
       </nav>
 
-      {/* HERO */}
-      <section
-        id="home"
-        className="flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center"
-      >
-        <div className="mb-5 rounded-full border border-white/20 bg-white/5 px-5 py-2 text-sm text-gray-300">
-          Former Professional Fortnite Player • NA-West Competitive Coaching
-        </div>
-
-        <h1 className="max-w-6xl text-6xl font-black tracking-tight md:text-8xl">
-          REZONE YOUR GAME.
-        </h1>
-
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-400">
-          Competitive Fortnite coaching built for players who want cleaner
-          mechanics, smarter fights, stronger rotations, and a real plan to
-          improve instead of just grinding ranked randomly.
-        </p>
-
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#packages"
-            className="rounded-2xl bg-white px-7 py-4 font-bold text-black transition hover:bg-gray-200"
-          >
-            View Coaching
-          </a>
-
-          <a
-            href="https://liquipedia.net/fortnite/Cesar"
-            target="_blank"
-            className="rounded-2xl border border-white/20 px-7 py-4 font-bold transition hover:bg-white/10"
-          >
-            Liquipedia
-          </a>
-
-          <a
-            href="https://fortnitetracker.com/profile/kbm/Cesars%2010/events?region=GLOBAL"
-            target="_blank"
-            className="rounded-2xl border border-white/20 px-7 py-4 font-bold transition hover:bg-white/10"
-          >
-            Fortnite Tracker
-          </a>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section className="border-y border-white/10 bg-zinc-950 px-6 py-16">
-        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-4">
-          <Stat number="339K+" label="Fortnite PR" />
-          <Stat number="$17K+" label="Event Earnings" />
-          <Stat number="41K+" label="Tracker Views" />
-          <Stat number="Pollo" label="Former Duo History" />
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="px-6 py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 md:items-center">
-          <div className="rounded-[2rem] border border-white/10 bg-zinc-950 p-8">
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
-              About the coach
-            </p>
-
-            <h2 className="mt-4 text-5xl font-black tracking-tight">
-              Cristian / Cesar
-            </h2>
-
-            <p className="mt-4 text-gray-400">
-              Former professional Fortnite player
-            </p>
-
-            <div className="mt-8 grid gap-4">
-              <Info title="Region" text="NA-West" />
-              <Info title="Experience" text="Years of competitive Fortnite" />
-              <Info
-                title="Focus"
-                text="Fighting, rotations, VOD review, tournament prep"
-              />
-            </div>
-          </div>
-
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-              My story
-            </p>
-
-            <h2 className="mt-4 text-4xl font-black leading-tight md:text-5xl">
-              Coaching from real competitive experience.
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-gray-400">
-              Hey, my name is Cristian, although most people online know me as
-              Cesar. I’m a 17-year old former professional Fortnite player who
-              competed in the NA-West region for several years.
-            </p>
-
-            <p className="mt-5 text-lg leading-8 text-gray-400">
-              Through competing at a high level, I learned how much separates
-              average players from strong competitive players: decision making,
-              consistency, confidence, and having a clear structure for
-              improvement.
-            </p>
-
-            <p className="mt-5 text-lg leading-8 text-gray-400">
-              My goal with Rezone is to help players stop guessing what they
-              need to fix. Whether you’re trying to rank up, improve your
-              fighting, or perform better in tournaments, I’ll help break down
-              your gameplay and give you a real plan to improve.
-            </p>
-          </div>
-        </div>
-      </section>
-{/* TEAM */}
-<section id="team" className="border-t border-white/10 bg-zinc-950 px-6 py-24">
-  <div className="mx-auto max-w-7xl">
-    <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-      Our Coaches
-    </p>
-
-    <h2 className="mt-4 text-center text-5xl font-black">
-      Learn from proven competitors.
-    </h2>
-
-    <p className="mx-auto mt-6 max-w-3xl text-center text-lg text-gray-400">
-      Our coaching team includes former professional Fortnite players, FNCS Grand
-      Finalists, LAN qualifiers, cash cup winners, and a World Cup qualifier.
-    </p>
-
-    <div className="mt-16 grid gap-6 md:grid-cols-3">
-      <CoachCard
-        name="Cesar"
-        items={[
-          "Former Professional Fortnite Player",
-          "10x FNCS Grand Finalist",
-          "3x Cash Cup Winner",
-          "$17K+ Career Earnings",
-          "339K+ PR",
-        ]}
-        liquipedia="https://liquipedia.net/fortnite/Cesar"
-        tracker="https://fortnitetracker.com/profile/kbm/Cesars%2010/events?region=GLOBAL"
-        twitter="https://x.com/Cesarslol"
-      />
-
-      <CoachCard
-        name="Jay"
-        items={[
-          "Former Professional Fortnite Player",
-          "2019 World Cup Duos Qualifier",
-          "$150K+ Career Earnings",
-          "12x FNCS Grand Finalist",
-        ]}
-        liquipedia="https://liquipedia.net/fortnite/Jay"
-        tracker="https://fortnitetracker.com/profile/all/JAYLIVEFAST/events"
-        twitter="https://x.com/JayFNBR"
-      />
-
-      <CoachCard
-        name="Bdawg"
-        items={[
-          "Former Professional Fortnite Player",
-          "Qualified for 2026 FNCS Summit LAN",
-          "$30K+ Career Earnings",
-          "9x FNCS Grand Finalist",
-        ]}
-        liquipedia="https://liquipedia.net/fortnite/Bdawg"
-        tracker="https://fortnitetracker.com/profile/all/cvx%20bdawg/events"
-        twitter="https://x.com/bdawg1_"
-      />
-    </div>
-  </div>
-</section>
-      {/* PACKAGES */}
-      <section id="packages" className="px-6 py-24">
+      <section id="home" className="relative isolate overflow-hidden px-5 pb-24 pt-44 sm:px-8 md:pb-32 md:pt-56">
+        <div className="pointer-events-none absolute -right-40 top-12 -z-10 h-[550px] w-[550px] rounded-full bg-[#4167e8]/10 blur-[110px]" />
         <div className="mx-auto max-w-7xl">
-          <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-            Packages
-          </p>
-
-          <h2 className="mt-4 text-center text-5xl font-black">
-            Coaching Packages
-          </h2>
-
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            <Package
-              tag="Starter"
-              price="$25 CAD"
-              title="VOD Review"
-              text="Send gameplay and get a clear breakdown of your biggest mistakes."
-              items={[
-                "Fight analysis",
-                "Rotation mistakes",
-                "Endgame review",
-                "Practice recommendations",
-              ]}
-            />
-
-            <Package
-              tag="Most Popular"
-              price="$50 CAD"
-              title="1-on-1 Coaching"
-              text="A live private session focused on your gameplay and improvement."
-              items={[
-                "60 minute private session",
-                "Mechanics coaching",
-                "Ranked strategy",
-                "Custom improvement plan",
-              ]}
-            />
-
-            <Package
-              tag="Competitive"
-              price="$200 CAD"
-              title="30-Day Program"
-              text="A full improvement plan for players trying to take comp seriously."
-              items={[
-                "Weekly coaching",
-                "Daily routines",
-                "VOD reviews",
-                "Tournament preparation",
-              ]}
-            />
-          </div>
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#7296ff]/25 bg-[#7296ff]/10 px-4 py-2 text-xs font-semibold tracking-widest text-[#afc2ff]"><span className="h-2 w-2 rounded-full bg-[#7296ff]" /> COMPETITIVE FORTNITE COACHING</div>
+          <h1 className="max-w-5xl text-6xl font-black leading-[.98] tracking-[-.075em] sm:text-7xl md:text-[108px]">STOP GUESSING.<br/><span className="text-[#7296ff]">START IMPROVING.</span></h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400 md:text-xl">Get focused coaching from experienced Fortnite competitors. Better decisions, cleaner fights, stronger rotations — and a plan built around your gameplay.</p>
+          <div className="mt-10 flex flex-wrap gap-3"><a href="#packages" className="rounded-xl bg-white px-7 py-4 font-bold text-black transition hover:bg-[#dce5ff]">Explore coaching <span className="ml-2">↗</span></a><a href="#team" className="rounded-xl border border-white/20 px-7 py-4 font-semibold transition hover:border-white/50 hover:bg-white/5">Meet the coaches</a></div>
+          <div className="mt-16 grid max-w-3xl grid-cols-2 gap-6 border-t border-white/15 pt-8 sm:grid-cols-3"><MiniStat number="10×" label="FNCS Grand Finals · Cesar"/><MiniStat number="$17K+" label="Career earnings · Cesar"/><MiniStat number="3" label="Competitive coaches"/></div>
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section
-        id="reviews"
-        className="border-t border-white/10 bg-zinc-950 px-6 py-24"
-      >
-        <div className="mx-auto max-w-7xl">
-          <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-            Reviews
-          </p>
+      <section id="about" className="scroll-mt-20 border-y border-white/10 bg-[#0d1015] px-5 py-24 sm:px-8"><div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 md:gap-20"><div><Eyebrow>THE REZONE APPROACH</Eyebrow><h2 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl">More than just playing more hours.</h2><p className="mt-6 leading-8 text-zinc-400">Improvement starts with knowing what to work on. We review your decisions, identify repeat mistakes, and help you build routines that make practice count.</p><p className="mt-5 leading-8 text-zinc-400">Founded by Cesar, a former NA-West professional player, REZONE brings real competitive experience into practical, individual coaching.</p></div><div className="grid gap-4"><Feature number="01" title="Find the gaps" text="Break down your fights, rotations, and decision-making."/><Feature number="02" title="Build a plan" text="Get specific feedback and practice priorities for your level."/><Feature number="03" title="Put it into practice" text="Apply what you learn in ranked games and tournaments."/></div></div></section>
 
-          <h2 className="mt-4 text-center text-5xl font-black">
-            Student Feedback
-          </h2>
+      <section id="team" className="scroll-mt-20 px-5 py-24 sm:px-8"><div className="mx-auto max-w-7xl"><Eyebrow>THE TEAM</Eyebrow><div className="mt-4 flex flex-col justify-between gap-5 md:flex-row md:items-end"><h2 className="max-w-xl text-4xl font-black tracking-tight sm:text-5xl">Learn from players who've competed at the top.</h2><p className="max-w-md leading-7 text-zinc-400">Our coaching roster includes an FNCS Summit LAN qualifier and a Fortnite World Cup Duos qualifier.</p></div><div className="mt-12 grid gap-5 md:grid-cols-3">{coaches.map(coach => <article key={coach.name} className="group flex flex-col rounded-2xl border border-white/10 bg-[#101318] p-7 transition hover:border-[#7296ff]/45 hover:bg-[#131923]"><span className="text-xs font-bold tracking-[.2em] text-[#9db5ff]">{coach.label}</span><h3 className="mt-5 text-4xl font-black tracking-tight">{coach.name}</h3><div className="my-7 h-px bg-white/10"/><ul className="flex-1 space-y-4 text-sm text-zinc-300">{coach.achievements.map(a => <li key={a} className="flex gap-3"><span className="text-[#7296ff]">✓</span>{a}</li>)}</ul><div className="mt-8 flex flex-wrap gap-2">{Object.entries(coach.links).map(([label, href]) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-zinc-300 transition hover:border-white/40 hover:text-white">{label} ↗</a>)}</div></article>)}</div></div></section>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            <Review
-              name="Evan M."
-              rank="Elite → Unreal"
-              text="I was hardstuck Elite for months. After two sessions my fights felt way cleaner and I finally hit Unreal."
-            />
+      <section id="packages" className="scroll-mt-20 border-y border-white/10 bg-[#0d1015] px-5 py-24 sm:px-8"><div className="mx-auto max-w-7xl"><div className="text-center"><Eyebrow>COACHING OPTIONS</Eyebrow><h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">Find your next step.</h2><p className="mx-auto mt-5 max-w-xl text-zinc-400">From a single gameplay review to a month of structured support. All prices in CAD.</p></div><div className="mt-12 grid gap-5 md:grid-cols-3">{packages.map((plan, index) => <article key={plan.title} className={`flex flex-col rounded-2xl border p-7 ${index === 1 ? "border-[#7296ff]/65 bg-[#151c2b] shadow-[0_0_50px_rgba(83,112,240,.08)]" : "border-white/10 bg-[#101318]"}`}><span className="text-xs font-bold tracking-[.2em] text-[#a9bdff]">{plan.tag}</span><h3 className="mt-5 text-2xl font-bold">{plan.title}</h3><div className="mt-5 flex items-baseline gap-2"><span className="text-5xl font-black tracking-tight">{plan.price}</span><span className="text-sm text-zinc-400">CAD</span></div><p className="mt-5 min-h-20 text-sm leading-7 text-zinc-400">{plan.description}</p><div className="my-7 h-px bg-white/10"/><ul className="flex-1 space-y-4 text-sm">{plan.features.map(f => <li key={f} className="flex gap-3 text-zinc-200"><span className="text-[#8ca8ff]">✓</span>{f}</li>)}</ul><button type="button" onClick={() => choosePackage(plan.title)} className={`mt-9 w-full rounded-xl px-5 py-3.5 font-bold transition ${index === 1 ? "bg-white text-black hover:bg-[#dce5ff]" : "border border-white/20 bg-white/10 text-white hover:bg-white/20"}`}>Request this plan ↗</button></article>)}</div><p className="mt-6 text-center text-xs text-zinc-500">Submitting a request does not charge you. We’ll follow up about scheduling and availability.</p></div></section>
 
-            <Review
-              name="Jayden R."
-              rank="Competitive Player"
-              text="Most coaches just tell you obvious stuff. Cristian actually broke down why I kept dying midgame and fixed it fast."
-            />
+      <section id="reviews" className="scroll-mt-20 px-5 py-24 sm:px-8"><div className="mx-auto max-w-7xl"><Eyebrow>PLAYER FEEDBACK</Eyebrow><h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">What players are saying.</h2><div className="mt-12 grid gap-5 md:grid-cols-3">{reviews.map(r => <blockquote key={r.name} className="flex flex-col rounded-2xl border border-white/10 bg-[#101318] p-7"><span className="text-3xl text-[#7296ff]">“</span><p className="mt-3 flex-1 leading-8 text-zinc-300">{r.quote}</p><footer className="mt-8 border-t border-white/10 pt-5"><p className="font-bold">{r.name}</p><p className="mt-1 text-sm text-zinc-500">{r.rank}</p></footer></blockquote>)}</div></div></section>
 
-            <Review
-              name="Marcus T."
-              rank="Champion Player"
-              text="The routines helped way more than I expected. My mechanics got way more consistent after like a week."
-            />
-          </div>
-        </div>
-      </section>
-      {/* HIGHLIGHTS */}
-<section className="border-t border-white/10 px-6 py-24">
-  <div className="mx-auto max-w-4xl text-center">
-    <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-      Content
-    </p>
+      <section className="border-y border-white/10 bg-[#0d1015] px-5 py-16 sm:px-8"><div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 md:flex-row md:items-center"><div><Eyebrow>WATCH THE GAMEPLAY</Eyebrow><h2 className="mt-3 text-3xl font-black">See Cesar in action.</h2><p className="mt-3 text-zinc-400">Tournament highlights and competitive Fortnite gameplay.</p></div><a href="https://www.youtube.com/@Cesarslol" target="_blank" rel="noopener noreferrer" className="rounded-xl border border-white/20 px-6 py-4 font-bold transition hover:bg-white/10">Visit YouTube ↗</a></div></section>
 
-    <h2 className="mt-4 text-5xl font-black">
-      YouTube Highlights
-    </h2>
-
-    <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
-      Fortnite highlights, tournament clips, and competitive gameplay uploaded
-       on my YouTube channel.
-    </p>
-
-    <a
-      href="https://www.youtube.com/@Cesarslol"
-      target="_blank"
-      className="mt-14 inline-block transition hover:scale-105"
-    >
-      <img
-        src="https://yt3.googleusercontent.com/ytc/AIdro_nYlJ0K0K7f2Y3l0n7uYfP6j8lR5M4w=s400-c-k-c0x00ffffff-no-rj"
-        alt="YouTube Channel"
-        className="mx-auto h-44 w-44 rounded-full border-4 border-white/10 object-cover shadow-2xl"
-      />
-
-      <p className="mt-6 text-2xl font-black">
-        @Cesarslol
-      </p>
-
-      <p className="mt-2 text-gray-400">
-        Click to visit channel
-      </p>
-    </a>
-  </div>
-</section>
-      {/* BOOK */}
-      <section id="book" className="px-6 py-24">
-        <div className="mx-auto max-w-3xl rounded-[2rem] border border-white/10 bg-zinc-950 p-8">
-          <p className="text-center text-sm font-bold uppercase tracking-[0.3em] text-gray-500">
-            Book Coaching
-          </p>
-
-          <h2 className="mt-4 text-center text-5xl font-black">
-            Submit a Booking Request
-          </h2>
-
-          <form
-            action="https://formsubmit.co/guywithduckonhisface@gmail.com"
-            method="POST"
-            className="mt-10 space-y-5"
-          >
-            <input type="hidden" name="_captcha" value="false" />
-
-            <input
-              name="name"
-              placeholder="Name"
-              required
-              className="w-full rounded-xl border border-white/10 bg-black px-5 py-4 text-white outline-none"
-            />
-
-            <input
-              name="contact"
-              placeholder="Email or Discord"
-              required
-              className="w-full rounded-xl border border-white/10 bg-black px-5 py-4 text-white outline-none"
-            />
-
-            <textarea
-              name="message"
-              rows={5}
-              placeholder="Tell me your rank, region, and what you need help with."
-              required
-              className="w-full rounded-xl border border-white/10 bg-black px-5 py-4 text-white outline-none"
-            />
-
-            <button
-              type="submit"
-              className="w-full rounded-2xl bg-white px-6 py-4 font-black text-black transition hover:bg-gray-200"
-            >
-              Submit Request
-            </button>
-          </form>
-        </div>
-      </section>
+      <section id="book" className="scroll-mt-20 px-5 py-24 sm:px-8"><div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[.85fr_1.15fr] md:gap-16"><div><Eyebrow>GET STARTED</Eyebrow><h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">Ready to improve?</h2><p className="mt-6 leading-8 text-zinc-400">Tell us what you want to work on. We'll review your request and follow up using the contact details you provide.</p><div className="mt-9 space-y-4 text-sm text-zinc-300"><p><span className="mr-3 text-[#7296ff]">01</span>Choose a coaching package</p><p><span className="mr-3 text-[#7296ff]">02</span>Tell us about your goals</p><p><span className="mr-3 text-[#7296ff]">03</span>We'll contact you about next steps</p></div></div><form action="https://formsubmit.co/guywithduckonhisface@gmail.com" method="POST" className="space-y-5 rounded-2xl border border-white/10 bg-[#101318] p-6 sm:p-9"><input type="hidden" name="_captcha" value="false"/><input type="hidden" name="_subject" value="New REZONE coaching request"/><div className="grid gap-5 sm:grid-cols-2"><div><label htmlFor="customer-name" className="mb-2 block text-sm font-semibold">Your name</label><input id="customer-name" name="name" required placeholder="Your name" className={field}/></div><div><label htmlFor="customer-contact" className="mb-2 block text-sm font-semibold">Email or Discord</label><input id="customer-contact" name="contact" required placeholder="How we can reach you" className={field}/></div></div><div className="grid gap-5 sm:grid-cols-2"><div><label htmlFor="package" className="mb-2 block text-sm font-semibold">Coaching package</label><select id="package" name="package" required value={selectedPackage} onChange={e => setSelectedPackage(e.target.value)} className={field}><option value="" disabled>Select a package</option>{packages.map(p => <option key={p.title} value={p.title}>{p.title} — {p.price} CAD</option>)}</select></div><div><label htmlFor="coach" className="mb-2 block text-sm font-semibold">Preferred coach</label><select id="coach" name="preferred_coach" value={selectedCoach} onChange={e => setSelectedCoach(e.target.value)} className={field}><option>No preference</option>{coaches.map(c => <option key={c.name}>{c.name}</option>)}</select></div></div><div><label htmlFor="customer-message" className="mb-2 block text-sm font-semibold">What would you like help with?</label><textarea id="customer-message" name="message" required rows={5} placeholder="Your rank, region, goals, and what you're struggling with..." className={field}/></div><button type="submit" className="w-full rounded-xl bg-white px-6 py-4 font-black text-black transition hover:bg-[#dce5ff]">Submit coaching request ↗</button><p className="text-center text-xs leading-5 text-zinc-500">This is a booking request, not a payment. We will contact you to confirm the details.</p></form></div></section>
+      <footer className="border-t border-white/10 px-5 py-9 sm:px-8"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 text-sm text-zinc-500 sm:flex-row"><div><span className="text-lg font-black tracking-tight text-white">REZONE<span className="text-[#7296ff]">.</span></span><p className="mt-2">Competitive Fortnite coaching.</p></div><div className="flex flex-wrap items-center gap-5"><a href="https://x.com/Cesarslol" target="_blank" rel="noopener noreferrer" className="hover:text-white">X ↗</a><a href="https://www.youtube.com/@Cesarslol" target="_blank" rel="noopener noreferrer" className="hover:text-white">YouTube ↗</a><a href="#home" className="hover:text-white">Back to top ↑</a></div></div></footer>
     </main>
   );
 }
+function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="text-xs font-bold tracking-[.24em] text-[#9db5ff]">{children}</p>; }
+function MiniStat({ number, label }: { number: string; label: string }) { return <div><p className="text-3xl font-black tracking-tight sm:text-4xl">{number}</p><p className="mt-2 text-xs text-zinc-500 sm:text-sm">{label}</p></div>; }
+function Feature({ number, title, text }: { number: string; title: string; text: string }) { return <div className="flex gap-5 rounded-2xl border border-white/10 bg-[#13171d] p-6"><span className="text-sm font-black text-[#7296ff]">{number}</span><div><h3 className="text-lg font-bold">{title}</h3><p className="mt-2 text-sm leading-6 text-zinc-400">{text}</p></div></div>; }
 
-function Stat({
-  number,
-  label,
-}: {
-  number: string;
-  label: string;
-}) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-black p-8">
-      <h3 className="text-4xl font-black">{number}</h3>
-      <p className="mt-2 text-gray-400">{label}</p>
-    </div>
-  );
-}
-
-function Info({
-  title,
-  text,
-}: {
-  title: string;
-  text: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-black p-5">
-      <p className="text-sm text-gray-500">{title}</p>
-      <p className="mt-1 font-bold">{text}</p>
-    </div>
-  );
-}
-
-function Package({
-  tag,
-  price,
-  title,
-  text,
-  items,
-}: {
-  tag: string;
-  price: string;
-  title: string;
-  text: string;
-  items: string[];
-}) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-white/30">
-      <p className="mb-3 text-sm uppercase tracking-widest text-gray-500">
-        {tag}
-      </p>
-
-      <h3 className="text-2xl font-black">{title}</h3>
-
-      <p className="mt-3 text-4xl font-black">{price}</p>
-
-      <p className="mt-4 leading-7 text-gray-400">{text}</p>
-
-      <ul className="mt-6 space-y-3 text-gray-300">
-        {items.map((item) => (
-          <li key={item}>• {item}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-function CoachCard({
-  name,
-  items,
-  liquipedia,
-  tracker,
-  twitter,
-}: {
-  name: string;
-  items: string[];
-  liquipedia: string;
-  tracker: string;
-  twitter: string;
-}) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-black p-8">
-      <h3 className="text-3xl font-black">{name}</h3>
-
-      <ul className="mt-6 space-y-3 text-gray-300">
-        {items.map((item) => (
-          <li key={item}>• {item}</li>
-        ))}
-      </ul>
-
-      <div className="mt-8 flex flex-wrap gap-3">
-        <a href={liquipedia} target="_blank">
-          Liquipedia
-        </a>
-
-        <a href={tracker} target="_blank">
-          Tracker
-        </a>
-
-        <a href={twitter} target="_blank">
-          X
-        </a>
-      </div>
-    </div>
-  );
-}
-
-
-function Review({
-  name,
-  rank,
-  text,
-}: {
-  name: string;
-  rank: string;
-  text: string;
-}) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-black p-8">
-      <p className="leading-7 text-gray-300">“{text}”</p>
-
-      <div className="mt-6 border-t border-white/10 pt-5">
-        <h4 className="font-bold">{name}</h4>
-        <p className="text-sm text-gray-500">{rank}</p>
-      </div>
-    </div>
   );
 }
