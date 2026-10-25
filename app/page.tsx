@@ -240,7 +240,7 @@ export default function RezoneWebsite() {
 
             <Package
               tag="Competitive"
-              price="$120 CAD"
+              price="$200 CAD"
               title="30-Day Program"
               text="A full improvement plan for players trying to take comp seriously."
               items={[
