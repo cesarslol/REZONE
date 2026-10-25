@@ -69,7 +69,26 @@ export default function RezoneWebsite() {
 }
 function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="text-xs font-bold tracking-[.24em] text-[#9db5ff]">{children}</p>; }
 function MiniStat({ number, label }: { number: string; label: string }) { return <div><p className="text-3xl font-black tracking-tight sm:text-4xl">{number}</p><p className="mt-2 text-xs text-zinc-500 sm:text-sm">{label}</p></div>; }
-function Feature({ number, title, text }: { number: string; title: string; text: string }) { return <div className="flex gap-5 rounded-2xl border border-white/10 bg-[#13171d] p-6"><span className="text-sm font-black text-[#7296ff]">{number}</span><div><h3 className="text-lg font-bold">{title}</h3><p className="mt-2 text-sm leading-6 text-zinc-400">{text}</p></div></div>; }
-
+function Feature({
+  number,
+  title,
+  text,
+}: {
+  number: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="flex gap-5 rounded-2xl border border-white/10 bg-[#13171d] p-6">
+      <span className="text-xl font-bold text-[#7296ff]">
+        {number}
+      </span>
+      <div>
+        <h3 className="font-bold text-white">{title}</h3>
+        <p className="mt-2 text-sm leading-6 text-zinc-400">
+          {text}
+        </p>
+      </div>
+    </div>
   );
 }
